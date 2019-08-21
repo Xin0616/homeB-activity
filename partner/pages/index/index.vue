@@ -20,22 +20,53 @@
 				</view>
 				<view class="li">
 					<view class="title">代理城市</view>
-					<input type="text" placeholder="请填写代理城市">
+					<input type="text" class='flex-item itself'
+						placeholder="请填写代理城市" disabled="true" @tap="showMulLinkageTwoPicker" />
 				</view>
 			</view>
 		</view>
 		<view class="img10">
 			<view>立即加入</view>
 		</view>
+		<mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" :pickerValueDefault="pickerValueDefault"
+		 @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="pickerValueArray"></mpvue-picker>
 	</view>
 </template>
 
 <script>
+	import mpvuePicker from '@/components/mpvue-picker/mpvuePicker.vue';
+	import cityData from '@/common/city.data.js';
 	export default {
 		data() {
 			return {
-				
+			
+				mulLinkageTwoPicker: cityData,
+				themeColor: '#007AFF',
+				mode: '',
+				deepLength: 1,
+				pickerValueDefault: [0],
+				pickerValueArray:[]
 			};
+		},
+		components:{
+			mpvuePicker
+		},
+		methods:{
+			onCancel(e) {
+				console.log(e)
+			},
+			// 单列
+			showMulLinkageTwoPicker() {
+				this.pickerValueArray = this.mulLinkageTwoPicker
+				this.mode = 'multiLinkageSelector'
+				this.deepLength = 2
+				this.pickerValueDefault = [0, 0]
+				this.$refs.mpvuePicker.show()
+			},
+			onConfirm(e) {
+				this.pickerText = JSON.stringify(e)
+				console.log(e)
+			}
 		}
 	}
 </script>
