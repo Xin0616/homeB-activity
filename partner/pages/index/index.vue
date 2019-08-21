@@ -8,64 +8,62 @@
 		<view class="img6"></view>
 		<view class="img7"></view>
 		<view class="img8"></view>
-		<view class="img9">
+		<view class="img9" id="formCon">
 			<view class="formBox">
 				<view class="li">
 					<view class="title">联系人</view>
-					<input type="text" placeholder="请填写联系人姓名">
+					<input type="text" placeholder="请填写联系人姓名" v-model="formParams.partnerName">
 				</view>
 				<view class="li">
 					<view class="title">联系电话</view>
-					<input type="text" placeholder="请填写联系手机">
+					<input type="text" placeholder="请填写联系手机" maxlength="11" v-model="formParams.partnerMobile">
 				</view>
 				<view class="li">
 					<view class="title">代理城市</view>
-					<input type="text" class='flex-item itself'
-						placeholder="请填写代理城市" disabled="true" @tap="showMulLinkageTwoPicker" />
+					<input type="text" placeholder="请填写代理城市" v-model="formParams.agentCityName"/>
 				</view>
 			</view>
 		</view>
-		<view class="img10">
-			<view>立即加入</view>
-		</view>
-		<mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength" :pickerValueDefault="pickerValueDefault"
-		 @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="pickerValueArray"></mpvue-picker>
+		<view class="img10"></view>
+		<view class="btn" @tap="btnJoin">{{btnText}}</view>
 	</view>
 </template>
 
 <script>
-	import mpvuePicker from '@/components/mpvue-picker/mpvuePicker.vue';
-	import cityData from '@/common/city.data.js';
 	export default {
 		data() {
 			return {
-			
-				mulLinkageTwoPicker: cityData,
-				themeColor: '#007AFF',
-				mode: '',
-				deepLength: 1,
-				pickerValueDefault: [0],
-				pickerValueArray:[]
+				btnText:'立即加入',
+				formParams:{
+					partnerMobile:'',
+					partnerName: '',
+					agentCityName:'',
+					source:''
+				}
 			};
 		},
-		components:{
-			mpvuePicker
+		watch:{
+			formParams:{
+				deep: true,
+				handler: function (){
+					if(this.formParams.partnerMobile != '' || this.formParams.partnerName != ''){
+						this.btnText = '提交申请'
+					}else{
+						this.btnText = '立即加入'
+					}
+				}
+			}
 		},
 		methods:{
-			onCancel(e) {
-				console.log(e)
-			},
-			// 单列
-			showMulLinkageTwoPicker() {
-				this.pickerValueArray = this.mulLinkageTwoPicker
-				this.mode = 'multiLinkageSelector'
-				this.deepLength = 2
-				this.pickerValueDefault = [0, 0]
-				this.$refs.mpvuePicker.show()
-			},
-			onConfirm(e) {
-				this.pickerText = JSON.stringify(e)
-				console.log(e)
+			btnJoin: function (){
+				if(this.btnText == '立即加入'){
+					var anchor = this.$el.querySelector('#formCon') // 参数为要跳转到的元素id
+					document.body.scrollTop = anchor.offsetTop; // chrome
+					document.documentElement.scrollTop = anchor.offsetTop; // firefox
+				}else if(this.btnText == '提交申请'){
+					
+				}
+				
 			}
 		}
 	}
@@ -137,15 +135,18 @@
 		.img10{
 			background-image:url('/static/hehuoren1/10.jpg');
 			height:1050upx;
-			position: relative;
-			view{
-				color:#fff;
-				text-align: center;
-				background: #4459D0;
-				line-height:100upx;
-				position: absolute;
-				bottom:70upx;
-			}
+			padding-bottom: 100upx;
+		}
+		.btn{
+			position: fixed;
+			left: 0;
+			bottom:0;
+			width: 100%;
+			color:#fff;
+			text-align: center;
+			background: #4459D0;
+			line-height:100upx;
+			
 		}
 	}
 </style>
