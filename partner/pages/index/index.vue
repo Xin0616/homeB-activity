@@ -24,7 +24,9 @@
 				</view>
 			</view>
 		</view>
-		<view class="img10"></view>
+		<view class="img10">
+			<view>立即加入</view>
+		</view>
 	</view>
 </template>
 
@@ -104,6 +106,15 @@
 		.img10{
 			background-image:url('/static/hehuoren1/10.jpg');
 			height:1050upx;
+			position: relative;
+			view{
+				color:#fff;
+				text-align: center;
+				background: #4459D0;
+				line-height:100upx;
+				position: absolute;
+				bottom:70upx;
+			}
 		}
 	}
 </style>
