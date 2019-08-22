@@ -116,57 +116,57 @@
 		}
 
 		.img1 {
-			background-image: url('/static/1.jpg');
+			background-image: url('../../static/1.jpg');
 			height: 930upx;
 		}
 
 		.img2 {
-			background-image: url('/static/2.jpg');
+			background-image: url('../../static/2.jpg');
 			height: 368upx;
 		}
 
 		.img3 {
-			background-image: url('/static/3.jpg');
+			background-image: url('../../static/3.jpg');
 			height: 830upx;
 		}
 
 		.img4 {
-			background-image: url('/static/4.jpg');
+			background-image: url('../../static/4.jpg');
 			height: 1275upx;
 		}
 
 		.img5 {
-			background-image: url('/static/5.jpg');
+			background-image: url('../../static/5.jpg');
 			height: 1515upx;
 		}
 
 		.img6 {
-			background-image: url('/static/6.jpg');
+			background-image: url('../../static/6.jpg');
 			height: 1310upx;
 		}
 
 		.img7 {
-			background-image: url('/static/7.jpg');
+			background-image: url('../../static/7.jpg');
 			height: 1200upx;
 		}
 
 		.img8 {
-			background-image: url('/static/8.jpg');
+			background-image: url('../../static/8.jpg');
 			height: 885upx;
 		}
 
 		.img9 {
-			background-image: url('/static/9.jpg');
+			background-image: url('../../static/9.jpg');
 			height: 1000upx;
 		}
 
 		.img10 {
-			background-image: url('/static/10.jpg');
+			background-image: url('../../static/10.jpg');
 			height: 2200upx;
 		}
 
 		.img11 {
-			background-image: url('/static/11.jpg');
+			background-image: url('../../static/11.jpg');
 			height: 1000upx;
 			padding-top: 1upx;
 
@@ -195,7 +195,7 @@
 		}
 
 		.img12 {
-			background-image: url('/static/12.jpg');
+			background-image: url('../../static/12.jpg');
 			height: 1055upx;
 		}
 

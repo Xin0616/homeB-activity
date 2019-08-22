@@ -108,39 +108,39 @@
 			background-size: contain;
 		}
 		.img1{
-			background-image:url('/static/hehuoren1/1.jpg');
+			background-image:url('../../static/hehuoren1/1.jpg');
 			height:926upx;
 		}
 		.img2{
-			background-image:url('/static/hehuoren1/2.jpg');
+			background-image:url('../../static/hehuoren1/2.jpg');
 			height:1036upx;
 		}
 		.img3{
-			background-image:url('/static/hehuoren1/3.jpg');
+			background-image:url('../../static/hehuoren1/3.jpg');
 			height:975upx;
 		}
 		.img4{
-			background-image:url('/static/hehuoren1/4.jpg');
+			background-image:url('../../static/hehuoren1/4.jpg');
 			height:1130upx;
 		}
 		.img5{
-			background-image:url('/static/hehuoren1/5.jpg');
+			background-image:url('../../static/hehuoren1/5.jpg');
 			height:1035upx;
 		}
 		.img6{
-			background-image:url('/static/hehuoren1/6.jpg');
+			background-image:url('../../static/hehuoren1/6.jpg');
 			height:890upx;
 		}
 		.img7{
-			background-image:url('/static/hehuoren1/7.jpg');
+			background-image:url('../../static/hehuoren1/7.jpg');
 			height:1200upx;
 		}
 		.img8{
-			background-image:url('/static/hehuoren1/8.jpg');
+			background-image:url('../../static/hehuoren1/8.jpg');
 			height:2170upx;
 		}
 		.img9{
-			background-image:url('/static/hehuoren1/9.jpg');
+			background-image:url('../../static/hehuoren1/9.jpg');
 			height:1000upx;
 			padding-top:1upx;
 			.formBox{
@@ -164,7 +164,7 @@
 			}
 		}
 		.img10{
-			background-image:url('/static/hehuoren1/10.jpg');
+			background-image:url('../../static/hehuoren1/10.jpg');
 			height:1050upx;
 			padding-bottom: 100upx;
 		}
