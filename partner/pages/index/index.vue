@@ -102,7 +102,7 @@
 
 <style lang="scss" scoped>
 	.partner{
-		view{
+		>view{
 			width: 100%;
 			background-repeat: no-repeat;
 			background-size: contain;
@@ -141,13 +141,13 @@
 		}
 		.img9{
 			background-image:url('../../static/hehuoren1/9.jpg');
-			height:1000upx;
+			height:740upx;
 			padding-top:1upx;
 			.formBox{
 				width: 100%;
 				height:3px;
 				box-sizing: border-box;
-				margin-top:250upx;
+				margin-top:150upx;
 				padding:0 45upx;
 				.li{
 					border-bottom:2upx solid #b6b6b6;

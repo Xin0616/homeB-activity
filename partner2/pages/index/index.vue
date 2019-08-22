@@ -147,7 +147,7 @@
 
 		.img7 {
 			background-image: url('../../static/7.jpg');
-			height: 1200upx;
+			height: 1040upx;
 		}
 
 		.img8 {
@@ -167,14 +167,14 @@
 
 		.img11 {
 			background-image: url('../../static/11.jpg');
-			height: 1000upx;
+			height:730upx;
 			padding-top: 1upx;
 
 			.formBox {
 				width: 100%;
 				height: 3px;
 				box-sizing: border-box;
-				margin-top: 250upx;
+				margin-top:150upx;
 				padding: 0 45upx;
 
 				.li {
