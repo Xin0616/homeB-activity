@@ -77,7 +77,6 @@
 				document.documentElement.scrollTop = anchor.offsetTop; // firefox
 				if(this.btnText == '提交申请'){
 					let succ = await shopUserRegist(this.formParams)
-					console.log(succ)
 					if(succ.code == 0){
 						this.popup.isShow = true;
 					}else{
