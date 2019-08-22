@@ -178,7 +178,7 @@
 			text-align: center;
 			background: #4459D0;
 			line-height:100upx;
-			
+			z-index: 99;
 		}
 	}
 </style>
