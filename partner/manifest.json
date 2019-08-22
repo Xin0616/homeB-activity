@@ -76,5 +76,21 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true
-    }
+    },
+	"h5" : {
+	    "devServer" : {
+	        "port" : 8080,
+	        "disableHostCheck" : true,
+	        "proxy" : {
+	            "/activity1" : {
+					// "target" : "http://192.168.10.151:9391",
+	                "target" : "http://39.106.191.160:9191",
+	                "changeOrigin" : true,
+	                "secure" : false
+	            }
+	        }
+	    },
+	    "template" : "index.html",
+	    "title" : "合伙人招募"
+	}
 }

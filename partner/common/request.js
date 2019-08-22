@@ -1,6 +1,6 @@
 import config from './config.js'
 
-export async function request(params){
+function request(params){
 	return new Promise(function (resolve,reject){
 		uni.showLoading({title: ''});
 		const {...rest} = params.data;
@@ -21,4 +21,15 @@ export async function request(params){
 			}
 		})
 	})
+}
+export function shopUserRegist(data){
+	return request({
+		url:'/activity1/partner/addPartner',
+		methods:"post",
+		contentType: 'application/x-www-form-urlencoded',
+		data:data
+	}).then(function (res){
+		let data = res.data;
+		return data
+	});
 }

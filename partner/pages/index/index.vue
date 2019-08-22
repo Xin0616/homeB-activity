@@ -26,10 +26,16 @@
 		</view>
 		<view class="img10"></view>
 		<view class="btn" @tap="btnJoin">{{btnText}}</view>
+		<uniPopup :show='popup.isShow' position="middle" mode="fixed">
+			<popupContent :operation='operation' :dataInfo='popup' v-on:isShow='isShow'></popupContent>
+		</uniPopup>
 	</view>
 </template>
 
 <script>
+	import uniPopup from '@/components/uni-popup/uni-popup.vue';
+	import popupContent from "@/components/popupContent/popupContent.vue"
+	import { shopUserRegist } from '@/common/request.js'
 	export default {
 		data() {
 			return {
@@ -38,9 +44,19 @@
 					partnerMobile:'',
 					partnerName: '',
 					agentCityName:'',
-					source:''
+					source:'1'
+				},
+				popup: {
+					isShow: false,
+					tipsMsg: '您已提交',
+					tipsExplain: '我们会在1-3个工作日内联系您！',
+					btn2: '知道了',
 				}
 			};
+		},
+		components:{
+			uniPopup,
+			popupContent
 		},
 		watch:{
 			formParams:{
@@ -55,15 +71,30 @@
 			}
 		},
 		methods:{
-			btnJoin: function (){
-				if(this.btnText == '立即加入'){
-					var anchor = this.$el.querySelector('#formCon') // 参数为要跳转到的元素id
-					document.body.scrollTop = anchor.offsetTop; // chrome
-					document.documentElement.scrollTop = anchor.offsetTop; // firefox
-				}else if(this.btnText == '提交申请'){
-					
+			btnJoin:async function (){
+				var anchor = this.$el.querySelector('#formCon') // 参数为要跳转到的元素id
+				document.body.scrollTop = anchor.offsetTop; // chrome
+				document.documentElement.scrollTop = anchor.offsetTop; // firefox
+				if(this.btnText == '提交申请'){
+					let succ = await shopUserRegist(this.formParams)
+					console.log(succ)
+					if(succ.code == 0){
+						console.log(1)
+						this.popup.isShow = true
+					}else{
+						console.log(2)
+						uni.showToast({
+							icon: 'none',
+							title: msg
+						})
+					}
 				}
-				
+			},
+			isShow(val) {
+				this.popup.isShow = val;
+			},
+			operation() {
+				this.popup.isShow = false;
 			}
 		}
 	}
