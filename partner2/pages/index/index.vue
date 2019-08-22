@@ -48,7 +48,7 @@
 					partnerMobile: '',
 					partnerName: '',
 					agentCityName: '',
-					source: '1'
+					source: '2'
 				},
 				popup: {
 					isShow: false,
