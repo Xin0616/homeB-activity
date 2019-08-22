@@ -12,11 +12,11 @@
 			<view class="formBox">
 				<view class="li">
 					<view class="title">联系人</view>
-					<input type="text" placeholder="请填写联系人姓名" v-model="formParams.partnerName">
+					<input type="text" :focus="partnerNameType" placeholder="请填写联系人姓名" v-model="formParams.partnerName">
 				</view>
 				<view class="li">
 					<view class="title">联系电话</view>
-					<input type="text" placeholder="请填写联系手机" maxlength="11" v-model="formParams.partnerMobile">
+					<input type="text" :focus="partnerMobileType" placeholder="请填写联系手机" maxlength="11" v-model="formParams.partnerMobile">
 				</view>
 				<view class="li">
 					<view class="title">代理城市</view>
@@ -46,6 +46,8 @@
 					agentCityName:'',
 					source:'1'
 				},
+				partnerNameType: false,
+				partnerMobileType: false,
 				popup: {
 					isShow: false,
 					tipsMsg: '您已提交',
@@ -71,21 +73,53 @@
 			}
 		},
 		methods:{
+			checkMobile: function (mobile) {//检查手机号
+				let reg = /^1[3456789]\d{9}$/
+				return reg.test(mobile)
+			},
 			btnJoin:async function (){
 				var anchor = this.$el.querySelector('#formCon') // 参数为要跳转到的元素id
 				document.body.scrollTop = anchor.offsetTop; // chrome
 				document.documentElement.scrollTop = anchor.offsetTop; // firefox
 				if(this.btnText == '提交申请'){
-					let succ = await shopUserRegist(this.formParams)
-					if(succ.code == 0){
-						this.popup.isShow = true;
-					}else{
-						uni.showToast({
-							icon: 'none',
-							title: msg
-						})
+					if(this.formParams.partnerName == ''){
+						this.showErr('请填写联系人姓名')
+						this.partnerNameType = true;
+						return;
 					}
+					if(this.formParams.partnerMobile == ''){
+						this.showErr("请填写联系手机")
+						this.partnerMobileType = true;
+						return;
+					}else{
+						if(this.checkMobile(this.formParams.partnerMobile)){
+							this.clearType();
+							let succ = await shopUserRegist(this.formParams)
+							if(succ.code == 0){
+								this.popup.isShow = true;
+							}else{
+								this.showErr(msg)
+							}
+						}else{
+							this.showErr("手机号填写错误，请重新填写")
+							this.partnerMobileType = true;
+							return;
+						}
+					}
+				}else{
+					this.partnerNameType = true;
+					this.showErr("请填写相关信息提交！")
 				}
+			},
+			clearType: function (){
+				this.partnerNameType = false;
+				this.partnerMobileType = false;
+			},
+			showErr: function (msg){
+				uni.showToast({
+					icon: 'none',
+					title: msg
+				})
 			},
 			isShow(val) {
 				this.popup.isShow = val;
