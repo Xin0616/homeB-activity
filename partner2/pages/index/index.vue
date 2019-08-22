@@ -46,7 +46,7 @@
 					partnerMobile:'',
 					partnerName: '',
 					agentCityName:'',
-					source:'1'
+					source:'2'
 				},
 				partnerNameType: false,
 				partnerMobileType: false,
@@ -238,6 +238,7 @@
 			background: #E93A27;
 			line-height: 100upx;
 			z-index: 20;
+			font-size: 36upx;
 		}
 	}
 </style>

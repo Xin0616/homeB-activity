@@ -175,7 +175,7 @@
 		}
 		.img9{
 			background-image:url('../../static/hehuoren1/9.jpg');
-			height:740upx;
+			height:730upx;
 			padding-top:1upx;
 			.formBox{
 				width: 100%;
@@ -212,6 +212,7 @@
 			background: #4459D0;
 			line-height:100upx;
 			z-index: 99;
+			font-size: 36upx;
 		}
 	}
 </style>
