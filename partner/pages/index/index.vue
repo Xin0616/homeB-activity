@@ -79,10 +79,8 @@
 					let succ = await shopUserRegist(this.formParams)
 					console.log(succ)
 					if(succ.code == 0){
-						console.log(1)
-						this.popup.isShow = true
+						this.popup.isShow = true;
 					}else{
-						console.log(2)
 						uni.showToast({
 							icon: 'none',
 							title: msg
@@ -95,6 +93,9 @@
 			},
 			operation() {
 				this.popup.isShow = false;
+				this.formParams.partnerMobile = '';
+				this.formParams.partnerName = '';
+				this.formParams.agentCityName = '';
 			}
 		}
 	}
@@ -177,7 +178,7 @@
 			text-align: center;
 			background: #4459D0;
 			line-height:100upx;
-			
+			z-index: 99;
 		}
 	}
 </style>
