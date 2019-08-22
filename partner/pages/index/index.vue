@@ -98,7 +98,7 @@
 							if(succ.code == 0){
 								this.popup.isShow = true;
 							}else{
-								this.showErr(msg)
+								this.showErr(succ.msg)
 							}
 						}else{
 							this.showErr("手机号填写错误，请重新填写")
