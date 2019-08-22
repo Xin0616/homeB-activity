@@ -24,7 +24,9 @@
 				</view>
 			</view>
 		</view>
-		<view class="img10"></view>
+		<view class="img10">
+			<image src="../../static/hehuoren1/10.jpg" mode="widthFix"></image>
+		</view>
 		<view class="btn" @tap="btnJoin">{{btnText}}</view>
 		<uniPopup :show='popup.isShow' position="middle" mode="fixed">
 			<popupContent :operation='operation' :dataInfo='popup' v-on:isShow='isShow'></popupContent>
@@ -72,6 +74,14 @@
 				}
 			}
 		},
+		mounted() {
+		   // 友盟统计添加
+		   const script = document.createElement("script");
+		   script.src =
+			"https://s96.cnzz.com/z_stat.php?id=1277768398&web_id=1277768398";
+		   script.language = "JavaScript";
+		   document.body.appendChild(script);
+		},
 		methods:{
 			checkMobile: function (mobile) {//检查手机号
 				let reg = /^1[3456789]\d{9}$/
@@ -106,9 +116,6 @@
 							return;
 						}
 					}
-				}else{
-					this.partnerNameType = true;
-					this.showErr("请填写相关信息提交！")
 				}
 			},
 			clearType: function (){
@@ -136,6 +143,7 @@
 
 <style lang="scss" scoped>
 	.partner{
+		padding-bottom: 90upx;
 		>view{
 			width: 100%;
 			background-repeat: no-repeat;
@@ -167,7 +175,7 @@
 		}
 		.img7{
 			background-image:url('../../static/hehuoren1/7.jpg');
-			height:1200upx;
+			height:940upx;
 		}
 		.img8{
 			background-image:url('../../static/hehuoren1/8.jpg');
@@ -177,6 +185,7 @@
 			background-image:url('../../static/hehuoren1/9.jpg');
 			height:730upx;
 			padding-top:1upx;
+			background-size: 100%;
 			.formBox{
 				width: 100%;
 				height:3px;
@@ -198,9 +207,17 @@
 			}
 		}
 		.img10{
-			background-image:url('../../static/hehuoren1/10.jpg');
-			height:1050upx;
-			padding-bottom: 100upx;
+			// background-image:url('../../static/hehuoren1/10.jpg');
+			// height:1050upx;
+			// padding-bottom: 100upx;
+			image{
+				width: 100%;
+				height: 100%;
+				-webkit-touch-callout: default;
+				// -webkit-touch-callout: initial
+				// -webkit-touch-callout: inherit
+				// -webkit-touch-callout: unset
+			}
 		}
 		.btn{
 			position: fixed;
