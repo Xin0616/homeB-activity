@@ -101,7 +101,7 @@
 				this.popup.isShow = false;
 				this.formParams.partnerMobile = '';
 				this.formParams.partnerName = '';
-				this.formParams.agentCityName = '';
+				this.formParams.agentCityName = ''; 
 			}
 		}
 	}
