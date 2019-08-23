@@ -213,7 +213,7 @@
 			image{
 				width: 100%;
 				height: 100%;
-				-webkit-touch-callout: default;
+				-webkit-touch-callout: default!important;
 				// -webkit-touch-callout: initial
 				// -webkit-touch-callout: inherit
 				// -webkit-touch-callout: unset
@@ -226,7 +226,7 @@
 			width: 100%;
 			color:#fff;
 			text-align: center;
-			background: #4459D0;
+			background: #000;
 			line-height:100upx;
 			z-index: 99;
 			font-size: 36upx;
