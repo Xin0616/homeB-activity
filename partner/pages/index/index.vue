@@ -226,7 +226,7 @@
 			width: 100%;
 			color:#fff;
 			text-align: center;
-			background: #000;
+			background: #f93822;
 			line-height:100upx;
 			z-index: 99;
 			font-size: 36upx;
