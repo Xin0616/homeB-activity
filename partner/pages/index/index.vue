@@ -104,6 +104,7 @@
 					}else{
 						if(this.checkMobile(this.formParams.partnerMobile)){
 							this.clearType();
+							this.MonitorEvent() // 埋点
 							let succ = await shopUserRegist(this.formParams)
 							if(succ.code == 0){
 								this.popup.isShow = true;
