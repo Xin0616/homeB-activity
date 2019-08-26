@@ -14,7 +14,7 @@ Vue.mixin({
 			if(typeof WCore === 'undefined') return ;
 			
 			var _core = new WCore();
-			 _core.options.cid = 'partner1';
+			 _core.options.cid = 'partner2';
 			var _user = new WCore.inputs.User();
 			_user.uid = '#';
 			var _pv = new WCore.inputs.PV(_user);
@@ -26,7 +26,7 @@ Vue.mixin({
 		MonitorPV(){
 			if(typeof WCore === 'undefined') return ;
 			var _core = new WCore();
-			 _core.options.cid = 'partner1';
+			 _core.options.cid = 'partner2';
 			var _user = new WCore.inputs.User();
 			_user.uid = '#';
 			var _pv = new WCore.inputs.PV(_user);
