@@ -103,6 +103,7 @@
 						return;
 					}else{
 						if(this.checkMobile(this.formParams.partnerMobile)){
+							uni.setStorageSync("mobile",this.formParams.partnerMobile)
 							this.clearType();
 							this.MonitorEvent() // 埋点
 							let succ = await shopUserRegist(this.formParams)

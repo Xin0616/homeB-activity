@@ -16,7 +16,8 @@ Vue.mixin({
 			var _core = new WCore();
 			 _core.options.cid = 'partner2';
 			var _user = new WCore.inputs.User();
-			_user.uid = '#';
+			let mobile = uni.getStorageSync("mobile")
+			_user.uid = mobile ? mobile :  '#';
 			var _pv = new WCore.inputs.PV(_user);
 			var _event = new WCore.inputs.Event(_pv);
 			_event.ec = ec;
@@ -28,7 +29,8 @@ Vue.mixin({
 			var _core = new WCore();
 			 _core.options.cid = 'partner2';
 			var _user = new WCore.inputs.User();
-			_user.uid = '#';
+			let mobile = uni.getStorageSync("mobile")
+			_user.uid = mobile ? mobile :  '#';
 			var _pv = new WCore.inputs.PV(_user);
 			_core.send(_pv);
 		}
