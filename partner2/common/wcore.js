@@ -501,7 +501,7 @@ WCore输入模块, 包括类及相关方法
 	function Input(api) {
 		// Request.call(this, WCore.config.apiPath + api + ".do");
 
-		Request.call(this, WCore.config.apiPath + '?type=' + api);
+		Request.call(this, WCore.config.apiPath + '?mdtype=' + api);
 	}
 
 	/* 继承自 Request */
@@ -1423,7 +1423,7 @@ WCore输入模块扩展, 包括类及相关方法
 
             // 前链url
             ln: function() {
-                return e(d.referrer);
+                return e(d.location.href);
             },
 
             // 搜索引擎
