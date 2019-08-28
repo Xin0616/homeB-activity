@@ -1423,7 +1423,7 @@ WCore输入模块扩展, 包括类及相关方法
 
             // 前链url
             ln: function() {
-                return e(d.location.href);
+                return e(d.referrer);
             },
 
             // 搜索引擎
