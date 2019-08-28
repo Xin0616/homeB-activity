@@ -25,6 +25,7 @@ Vue.mixin({
 			_core.send(_event); 
 		},
 		MonitorPV(){
+			console.log("触发pv....")
 			if(typeof WCore === 'undefined') return ;
 			var _core = new WCore();
 			 _core.options.cid = 'partner1';

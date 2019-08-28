@@ -5,7 +5,7 @@
 			this.MonitorPV()
 		},
 		onShow: function() {
-			
+			// this.MonitorPV()
 		},
 		onHide: function() {
 			
