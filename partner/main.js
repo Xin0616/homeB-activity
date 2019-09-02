@@ -9,10 +9,7 @@ Vue.mixin({
 	methods: {
 		MonitorEvent(ec) {
 			console.log("触发监控....")
-			console.log(event)
-			console.log(ec);
 			if(typeof WCore === 'undefined') return ;
-			
 			var _core = new WCore();
 			 _core.options.cid = 'partner1';
 			var _user = new WCore.inputs.User();
