@@ -74,16 +74,6 @@
 				}
 			}
 		},
-		mounted() {
-			//this.MonitorPV()
-		   // 友盟统计添加
-		   const script = document.createElement("script");
-		   script.src =
-			"https://s96.cnzz.com/z_stat.php?id=1277768398&web_id=1277768398";
-		   script.language = "JavaScript";
-		   document.body.appendChild(script);
-			console.log('youmeng')
-		},
 		methods:{
 			checkMobile: function (mobile) {//检查手机号
 				let reg = /^1[3456789]\d{9}$/
@@ -107,7 +97,7 @@
 						if(this.checkMobile(this.formParams.partnerMobile)){
 							uni.setStorageSync("mobile",this.formParams.partnerMobile)
 							this.clearType();
-							this.MonitorEvent() // 埋点
+							this.MonitorEvent("submit_btn_tap") // 执行大数据埋点
 							let succ = await shopUserRegist(this.formParams)
 							if(succ.code == 0){
 								this.popup.isShow = true;

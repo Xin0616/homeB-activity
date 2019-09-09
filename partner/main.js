@@ -3,12 +3,12 @@ import App from './App'
 import WCore from 'common/wcore.js'
 
 Vue.config.productionTip = false
-
+ 
 App.mpType = 'app'
 Vue.mixin({
 	methods: {
 		MonitorEvent(ec) {
-			console.log("触发监控....")
+			console.log("触发ec监控....")
 			if(typeof WCore === 'undefined') return ;
 			var _core = new WCore();
 			 _core.options.cid = 'partner1';
@@ -18,12 +18,11 @@ Vue.mixin({
 			var _pv = new WCore.inputs.PV(_user);
 			var _event = new WCore.inputs.Event(_pv);
 			_event.ec = ec;
-			_event.ea = event.type;
+			_event.ea = event.type ? event.type : "click";
 			_core.send(_event); 
 		},
 		MonitorPV(){
 			console.log("触发PV监控....")
-			console.log(event)
 			if(typeof WCore === 'undefined') return ;
 			var _core = new WCore();
 			 _core.options.cid = 'partner1';

@@ -1,0 +1,144 @@
+body {
+	padding: 0;
+	margin: 0;
+	background: #F0F0F0;
+}
+
+.content {
+	width: 1200px;
+	height: auto;
+	margin: 0 auto;
+	/* background: #F0F0F0; */
+	position: relative;
+}
+
+.imgCon {
+	width: 750px;
+	height: auto;
+	position: relative;
+}
+
+.rightCon {
+	position: fixed;
+	top: 20px;
+	background: #fff;
+	width: 400px;
+}
+
+.formCon {
+	width: 400px;
+	padding: 0 25px;
+	box-sizing: border-box;
+	position: relative;
+}
+.formCon .title{
+	font-size: 20px;
+	text-align: center;
+	color: #333333;
+	margin-top: 15px;
+}	
+.formCon .inputItem{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	border-bottom: 1px solid  #b6b6b6;
+	padding: 20px 0 10px 0;
+}
+.formCon .inputItem .err{
+	flex: 1;
+	font-size: 10px;
+	color: #E83A26;
+	flex-shrink: 0;
+}
+.formCon .btnCon{
+	text-align: center;
+	background: #E83A26;
+	color: #fff;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 5px;
+	margin: 25px 0 15px 0;
+	cursor: pointer;
+}
+.formCon .inputItem .itemSpan{
+	width: 90px;
+	font-size: 16px;
+	text-align-last: justify;
+	flex-shrink: 0;
+}
+.mobile,.name{
+	width: 150px;
+}
+.formCon .inputItem input{
+	font-size: 14px;
+	border: 0;
+	margin-left: 10px;
+	background:none;  
+    outline:none;
+}
+.inputItem input:focus{   
+    border:none;
+}
+.codeCon{
+	width: 400;
+	overflow: hidden;
+}
+.topCon{
+	height: 40px;
+	position: fixed;
+	bottom: 20px;
+	background: #F0F0F0;
+	display: none;
+	box-sizing: border-box;
+	overflow: hidden;
+	vertical-align: middle;
+}
+.popup,.errPopup{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	margin-left: -150px;
+	z-index: 99;
+	box-sizing: border-box;
+}
+.popup{
+	display: none;
+	background: #FFFFFF;
+	margin-top: -25%;
+	padding: 25px 20px;
+	text-align: center;
+	box-shadow:2px 1px 5px #ccc;
+	border-radius: 5px;
+}
+.popup .title{
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.popup .text{
+	font-size: 14px;
+	color: #9F9F9F;
+}
+.popup .btn{
+	margin-top: 15px;
+	width: 100%;
+	text-align: center;
+	color: #FFFFFF;
+	background: #E83A26;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.errPopup{
+	display: none;
+	background: #696969;
+	height: 60px;
+	line-height: 60px;
+	margin-top: -30px;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 18px;
+	border-radius: 10px;
+}

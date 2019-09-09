@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<style media="screen">
+		/*分辨率低于1280，采用下面的样式*/
+		@media screen and (max-width: 300px) {
+			.rightCon {
+				background-color:lightblue;
+			}
+		}
+
+		/*分辨率高于1440，采用下面的样式*/
+		@media screen and (max-width: 1440px){
+			.imgCon{
+				width: 680px;
+			}
+		}
+	</style>
+	<body>
+		<div class="content">
+			<div class="imgCon">
+				<img src="img/u188.png">
+			
+				<div class="rightCon">
+					<div class="formCon">
+						<div class="title">成为合伙人</div>
+						<div class="inputItem">
+							<span class="itemSpan">联系人：</span>
+							<input type="text" onchange="inputChangeFun('name')" class="name" placeholder="请填写联系人姓名" value="">
+							<span class="nameErr err"></span>
+						</div>
+						<div class="inputItem">
+							<span class="itemSpan">联系电话：</span>
+							<input type="text" onchange="inputChangeFun('mobile')" maxlength="11" class="mobile" value="" placeholder="请填写联系电话">
+							<span class="mobileErr err"></span>
+						</div>
+						<div class="inputItem">
+							<span class="itemSpan">代理城市：</span>
+							<input type="text" class="city" placeholder="请填写代理城市">
+						</div>
+						<div class="btnCon">
+							提交申请
+						</div>
+						<!-- 弹出框 -->
+						<div class="popup">
+							<div class="title">您已提交成功</div>
+							<div class="text">我们会在1-3个工作日内联系您！</div>
+							<div class="btn closePopup">知道了！</div>
+						</div>
+						<div class="errPopup">
+
+						</div>
+					</div>
+					<div class="codeCon">
+						<!-- <img src="img/codeImg2.jpg"> -->
+						<img src="img/code.svg">
+					</div>
+				</div>
+			</div>
+			<div class="topCon">
+				<img src="img/top.png">
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function inputChangeFun(type) {
+			switch (type) {
+				case 'name':
+					$('.nameErr').html('')
+					break;
+				case 'mobile':
+					$('.mobileErr').html('')
+					break;
+				default:
+					break;
+			}
+		}
+		function checkMobile(mobile) {
+			var reg = /^1[3456789]\d{9}$/
+			return reg.test(mobile)
+		}
+
+		function submitForm(params) {
+			$(".errPopup").html('')
+			$.ajax({
+				url: 'https://motiactivity.motimall.cn/api/activity1/partner/addPartner',
+				type: 'post',
+				data: params,
+				success: function(res) {
+					$('.mobile').val('')
+					$('.name').val('')
+					$('.city').val('')
+					if (res.code == 0) {
+						$('.popup').show();
+					} else if (res.code == 17) {
+						$(".errPopup").html('该手机号已提交过申请')
+						$(".errPopup").show().delay(3000).hide(300);
+					}
+				}
+			})
+		}
+		// 获取浏览器可视窗口宽度计算定位位置
+		function getLeft(){
+			var widthTop = document.documentElement.clientWidth;
+			var topBtnLeft = 0;
+			if((widthTop-1200)/2 >= 0){
+				console.log(1)
+				topBtnLeft = (widthTop-1200)/2 + 770;
+			}else{
+				console.log(2)
+				topBtnLeft = 770;
+			}
+			$('.rightCon').css('left',topBtnLeft)
+			$('.topCon').css('left',topBtnLeft);
+		}
+		
+		
+		$(function() {
+			getLeft()
+			window.onresize = function(){
+				getLeft()
+			}
+			// 友盟统计添加
+			const script = document.createElement("script");
+			script.src = "https://s96.cnzz.com/z_stat.php?id=1277768398&web_id=1277768398";
+			script.language = "JavaScript";
+			document.body.appendChild(script);
+			
+			// 监听滑动
+			$(window).scroll(function(event) {
+				var winPos = $(window).scrollTop();
+				if (winPos >= 500) {
+					var widthTop = document.documentElement.clientWidth;
+					$('.topCon').show()
+				} else {
+					$('.topCon').hide()
+				}
+			});
+
+			$('.topCon').on('click', function() {
+				var speed = 200; //滑动的速度
+				$('body,html').animate({
+					scrollTop: 0
+				}, speed);
+				return false;
+			})
+
+			$('.btnCon').on('click', function() {
+				$('nameErr').html('')
+				$('mobileErr').html('')
+				var params = {
+					partnerMobile: $('.mobile').val(),
+					partnerName: $('.name').val(),
+					agentCityName: $('.city').val(),
+					source: '3'
+				}
+				if (params.partnerName == '') {
+					$('.nameErr').html('请填写姓名')
+					return
+				}
+				if (params.partnerMobile == '') {
+					$('.mobileErr').html('请填写手机号码')
+					return
+				}
+				if (!checkMobile(params.partnerMobile)) {
+					$('.mobileErr').html('请填写正确的手机号码')
+					return
+				}
+				if (checkMobile(params.partnerMobile) && params.partnerName != '') {
+					submitForm(params)
+				}
+			})
+			$('.closePopup').on('click', function() {
+				$('.popup').hide()
+			})
+		})
+	</script>
+</html>

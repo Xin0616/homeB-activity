@@ -1590,7 +1590,7 @@ WCore输入模块扩展, 包括类及相关方法
                 source.utmtyp = 'Others';
             }
 
-            for (i in source) {
+            for (var i in source) {
                 sourceArr.push(i + '=' + source[i]);
             }
             sourceStr = sourceArr.join('|');
@@ -1865,7 +1865,7 @@ WCore.config = {
     WCore.config.apiPath = 'http://test.com/api/';
     // 如发送PV请求, URL会变成http://test.com/api/PV.do?
     */
-    apiPath: 'https://md.leiyankeji.com/log.gif',
+    apiPath: 'https://md.motivape.cn/log.gif',
     //apiPath: 'http://ddns.leiyankeji.com:1081/1.gif',
     // apiPath: 'http://patwu.cn/log.png',
 
