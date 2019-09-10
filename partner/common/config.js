@@ -2,7 +2,7 @@ const config = {}
 const webHost = window.location.host;
 config.host = process.env.NODE_ENV === 'development' 
 	? 
-		"http://192.168.191.1:8082"
+		"http://192.168.10.182:8089"
 	: 
 		'https://'+webHost+'/api'
 	//	"https://daojia.motivape.cn/api" // 生产环境/线上环境

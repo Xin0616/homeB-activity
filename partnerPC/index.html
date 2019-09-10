@@ -4,28 +4,25 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 		<title></title>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function (){
+				// 友盟统计添加
+				const script = document.createElement("script");
+				script.src = "https://s96.cnzz.com/z_stat.php?id=1277768398&web_id=1277768398";
+				script.language = "JavaScript";
+				document.body.appendChild(script);
+				// 声明_czc对象
+				var _czc = _czc || [];
+				_czc.push(['_setAccount','1277768398'])
+			})
+		</script>
 	</head>
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
-	<style media="screen">
-		/*分辨率低于1280，采用下面的样式*/
-		@media screen and (max-width: 300px) {
-			.rightCon {
-				background-color:lightblue;
-			}
-		}
-
-		/*分辨率高于1440，采用下面的样式*/
-		@media screen and (max-width: 1440px){
-			.imgCon{
-				width: 680px;
-			}
-		}
-	</style>
 	<body>
 		<div class="content">
 			<div class="imgCon">
 				<img src="img/u188.png">
-			
 				<div class="rightCon">
 					<div class="formCon">
 						<div class="title">成为合伙人</div>
@@ -43,7 +40,7 @@
 							<span class="itemSpan">代理城市：</span>
 							<input type="text" class="city" placeholder="请填写代理城市">
 						</div>
-						<div class="btnCon">
+						<div class="btnCon" id="submitBtn">
 							提交申请
 						</div>
 						<!-- 弹出框 -->
@@ -57,7 +54,6 @@
 						</div>
 					</div>
 					<div class="codeCon">
-						<!-- <img src="img/codeImg2.jpg"> -->
 						<img src="img/code.svg">
 					</div>
 				</div>
@@ -67,71 +63,15 @@
 			</div>
 		</div>
 	</body>
-	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	
 	<script type="text/javascript">
-		function inputChangeFun(type) {
-			switch (type) {
-				case 'name':
-					$('.nameErr').html('')
-					break;
-				case 'mobile':
-					$('.mobileErr').html('')
-					break;
-				default:
-					break;
-			}
-		}
-		function checkMobile(mobile) {
-			var reg = /^1[3456789]\d{9}$/
-			return reg.test(mobile)
-		}
-
-		function submitForm(params) {
-			$(".errPopup").html('')
-			$.ajax({
-				url: 'https://motiactivity.motimall.cn/api/activity1/partner/addPartner',
-				type: 'post',
-				data: params,
-				success: function(res) {
-					$('.mobile').val('')
-					$('.name').val('')
-					$('.city').val('')
-					if (res.code == 0) {
-						$('.popup').show();
-					} else if (res.code == 17) {
-						$(".errPopup").html('该手机号已提交过申请')
-						$(".errPopup").show().delay(3000).hide(300);
-					}
-				}
-			})
-		}
-		// 获取浏览器可视窗口宽度计算定位位置
-		function getLeft(){
-			var widthTop = document.documentElement.clientWidth;
-			var topBtnLeft = 0;
-			if((widthTop-1200)/2 >= 0){
-				console.log(1)
-				topBtnLeft = (widthTop-1200)/2 + 770;
-			}else{
-				console.log(2)
-				topBtnLeft = 770;
-			}
-			$('.rightCon').css('left',topBtnLeft)
-			$('.topCon').css('left',topBtnLeft);
-		}
-		
 		
 		$(function() {
 			getLeft()
 			window.onresize = function(){
 				getLeft()
 			}
-			// 友盟统计添加
-			const script = document.createElement("script");
-			script.src = "https://s96.cnzz.com/z_stat.php?id=1277768398&web_id=1277768398";
-			script.language = "JavaScript";
-			document.body.appendChild(script);
-			
 			// 监听滑动
 			$(window).scroll(function(event) {
 				var winPos = $(window).scrollTop();
@@ -142,7 +82,7 @@
 					$('.topCon').hide()
 				}
 			});
-
+			// 滑到顶部
 			$('.topCon').on('click', function() {
 				var speed = 200; //滑动的速度
 				$('body,html').animate({
@@ -150,7 +90,7 @@
 				}, speed);
 				return false;
 			})
-
+			// 
 			$('.btnCon').on('click', function() {
 				$('nameErr').html('')
 				$('mobileErr').html('')
@@ -180,5 +120,66 @@
 				$('.popup').hide()
 			})
 		})
+		//获取url中的参数 -- material
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			if (r != null) return unescape(r[2]); return null; //返回参数值
+		}
+		
+		function inputChangeFun(type) {
+			switch (type) {
+				case 'name':
+					$('.nameErr').html('')
+					break;
+				case 'mobile':
+					$('.mobileErr').html('')
+					break;
+				default:
+					break;
+			}
+		}
+		
+		function checkMobile(mobile) {
+			var reg = /^1[3456789]\d{9}$/
+			return reg.test(mobile)
+		}
+
+		function submitForm(params) {
+			$(".errPopup").html('')
+			$.ajax({
+				url: 'https://motiactivity.motimall.cn/api/activity1/partner/addPartner',
+				type: 'post',
+				data: params,
+				success: function(res) {
+					// 友盟事件埋点
+					var label = '获取关键词（material）为'+ getUrlParam('material')
+					_czc.push(['_trackEvent','partnerPC按钮','提交合伙人信息',label,'','btnCon'])
+					// 清空输入框
+					$('.mobile').val('')
+					$('.name').val('')
+					$('.city').val('')
+					
+					if (res.code == 0) {
+						$('.popup').show();
+					} else if (res.code == 17) {
+						$(".errPopup").html('该手机号已提交过申请')
+						$(".errPopup").show().delay(3000).hide(300);
+					}
+				}
+			})
+		}
+		// 获取浏览器可视窗口宽度计算定位位置
+		function getLeft(){
+			var widthTop = document.documentElement.clientWidth;
+			var topBtnLeft = 0;
+			if((widthTop-1200)/2 >= 0){
+				topBtnLeft = (widthTop-1200)/2 + 770;
+			}else{
+				topBtnLeft = 770;
+			}
+			$('.rightCon').css('left',topBtnLeft)
+			$('.topCon').css('left',topBtnLeft);
+		}
 	</script>
 </html>

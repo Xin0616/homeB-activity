@@ -57,12 +57,17 @@
 					tipsMsg: '您已提交',
 					tipsExplain: '我们会在1-3个工作日内联系您！',
 					btn2: '知道了',
-				}
+				},
+				material:''
 			};
 		},
 		components:{
 			uniPopup,
 			popupContent
+		},
+		onLoad(e) {
+			this.material = e.material
+			console.log(this.material)
 		},
 		watch:{
 			formParams:{
@@ -77,14 +82,22 @@
 			}
 		},
 		mounted() {
-		   // 友盟统计添加
+		    // 友盟统计添加
 		   const script = document.createElement("script");
-		   script.src =
-			"https://s96.cnzz.com/z_stat.php?id=1277768398&web_id=1277768398";
+		   script.src = "https://s96.cnzz.com/z_stat.php?id=1277768398&web_id=1277768398";
 		   script.language = "JavaScript";
 		   document.body.appendChild(script);
+		   // 声明_czc对象
+		   var _czc = _czc || [];
+		   _czc.push(['_setAccount','1277768398'])
 		},
 		methods:{
+			//获取url中的参数 -- material
+			getUrlParam: function (name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+				var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+				if (r != null) return unescape(r[2]); return null; //返回参数值
+			},
 			checkMobile: function (mobile) {//检查手机号
 				let reg = /^1[3456789]\d{9}$/
 				return reg.test(mobile)
@@ -107,9 +120,12 @@
 						if(this.checkMobile(this.formParams.partnerMobile)){
 							uni.setStorageSync("mobile",this.formParams.partnerMobile)
 							this.clearType();
-							this.MonitorEvent() // 埋点
+							// this.MonitorEvent() // 埋点
 							let succ = await shopUserRegist(this.formParams)
 							if(succ.code == 0){
+								// 友盟事件埋点
+								let label = '获取关键词（material）为'+ this.material
+								_czc.push(['_trackEvent','partner2按钮','提交合伙人信息',label,'','btnCon'])
 								this.popup.isShow = true;
 							}else{
 								this.showErr(succ.msg)
