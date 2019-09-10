@@ -152,15 +152,14 @@
 				type: 'post',
 				data: params,
 				success: function(res) {
-					// 友盟事件埋点
-					var label = '获取关键词（material）为'+ getUrlParam('material')
-					_czc.push(['_trackEvent','partnerPC按钮','提交合伙人信息',label,'','btnCon'])
 					// 清空输入框
 					$('.mobile').val('')
 					$('.name').val('')
 					$('.city').val('')
-					
 					if (res.code == 0) {
+						// 友盟事件埋点
+						var label = '获取关键词（material）为'+ getUrlParam('material')
+						_czc.push(['_trackEvent','partnerPC按钮','提交合伙人信息',label,'','btnCon'])
 						$('.popup').show();
 					} else if (res.code == 17) {
 						$(".errPopup").html('该手机号已提交过申请')
