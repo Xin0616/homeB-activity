@@ -61,10 +61,9 @@
 		},
 		onLoad(e) {
 			this.material = e.material
-			console.log(this.material)
 		},
 		mounted() {
-			 // 友盟统计添加
+			// 友盟统计添加
 			const script = document.createElement("script");
 			script.src = "https://s96.cnzz.com/z_stat.php?id=1277768398&web_id=1277768398";
 			script.language = "JavaScript";
