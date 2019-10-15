@@ -146,11 +146,13 @@
 		}
 
 		function submitForm(params) {
-			$(".errPopup").html('')
+			$(".errPopup").html('');
+			let paramsData = params;
+			paramsData.channel = getUrlParam('channel')
 			$.ajax({
 				url: 'https://motiactivity.motimall.cn/api/activity1/partner/addPartner',
 				type: 'post',
-				data: params,
+				data: paramsData,
 				success: function(res) {
 					// 清空输入框
 					$('.mobile').val('')
@@ -158,7 +160,7 @@
 					$('.city').val('')
 					if (res.code == 0) {
 						// 友盟事件埋点
-						var label = '获取关键词（material）为'+ getUrlParam('material')
+						let label = 'material:'+getUrlParam('material')+'orderSource:'+getUrlParam('orderSource')+'channel:'+getUrlParam('channel');
 						_czc.push(['_trackEvent','partnerPC按钮','提交合伙人信息',label,'','btnCon'])
 						$('.popup').show();
 					} else if (res.code == 17) {

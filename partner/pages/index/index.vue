@@ -46,7 +46,8 @@
 					partnerMobile:'',
 					partnerName: '',
 					agentCityName:'',
-					source:'1'
+					source:'1',
+					channel: ''
 				},
 				partnerNameType: false,
 				partnerMobileType: false,
@@ -56,11 +57,16 @@
 					tipsExplain: '我们会在1-3个工作日内联系您！',
 					btn2: '知道了',
 				},
-				material:''
+				sourceInfo:{}
 			};
 		},
 		onLoad(e) {
-			this.material = e.material
+			let sourceObj = {
+				material: e.material?e.material:'',
+				orderSource: e.material?e.material:'',
+				channel: e.channel?e.channel:''
+			}
+			this.sourceInfo = sourceObj
 		},
 		mounted() {
 			// 友盟统计添加
@@ -111,11 +117,12 @@
 						if(this.checkMobile(this.formParams.partnerMobile)){
 							uni.setStorageSync("mobile",this.formParams.partnerMobile)
 							this.clearType();
-							// this.MonitorEvent("submit_btn_tap") // 执行大数据埋点
+							this.formParams.channel = this.sourceInfo.channel;
 							let succ = await shopUserRegist(this.formParams)
 							if(succ.code == 0){
+								let sourceInfo = this.sourceInfo
 								// 友盟事件埋点
-								let label = '获取关键词（material）为'+ this.material
+								let label = 'material:'+sourceInfo.material+'orderSource:'+sourceInfo.orderSource+'channel:'+sourceInfo.channel
 								_czc.push(['_trackEvent','partner1按钮','提交合伙人信息',label,'','btnCon'])
 								this.popup.isShow = true;
 							}else{
