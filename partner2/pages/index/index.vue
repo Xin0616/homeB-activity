@@ -124,7 +124,7 @@
 								let sourceInfo = this.sourceInfo
 								// 友盟事件埋点
 								let label = 'material:'+sourceInfo.material+'orderSource:'+sourceInfo.orderSource+'channel:'+sourceInfo.channel
-								_czc.push(['_trackEvent','partner1按钮','提交合伙人信息',label,'','btnCon'])
+								_czc.push(['_trackEvent','partner2按钮','提交合伙人信息',label,'','btnCon'])
 								this.popup.isShow = true;
 							}else{
 								this.showErr(succ.msg)
