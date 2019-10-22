@@ -149,6 +149,7 @@
 			$(".errPopup").html('');
 			let paramsData = params;
 			paramsData.channel = getUrlParam('channel')
+			paramsData.reserve1 = getUrlParam('material')
 			$.ajax({
 				url: 'https://motiactivity.motimall.cn/api/activity1/partner/addPartner',
 				type: 'post',

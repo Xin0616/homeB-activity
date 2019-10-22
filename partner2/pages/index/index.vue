@@ -48,7 +48,9 @@
 					partnerMobile:'',
 					partnerName: '',
 					agentCityName:'',
-					source:'2'
+					source:'2',
+					channel: '',
+					reserve1: ''
 				},
 				partnerNameType: false,
 				partnerMobileType: false,
@@ -119,6 +121,7 @@
 							uni.setStorageSync("mobile",this.formParams.partnerMobile)
 							this.clearType();
 							this.formParams.channel = this.sourceInfo.channel;
+							this.formParams.reserve1 = this.sourceInfo.material;
 							let succ = await shopUserRegist(this.formParams)
 							if(succ.code == 0){
 								let sourceInfo = this.sourceInfo
